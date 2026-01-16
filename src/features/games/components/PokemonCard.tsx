@@ -3,6 +3,7 @@ import { Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { type PokemonBasic } from '../types';
 import { getPokemonIdFromUrl, getPokemonImageUrl } from '../../../lib/utils';
+import { useFavoritesStore } from '../../../store/useFavoritesStore';
 
 interface Props {
   pokemon: PokemonBasic;
@@ -11,6 +12,9 @@ interface Props {
 export const PokemonCard = ({ pokemon }: Props) => {
   const id = getPokemonIdFromUrl(pokemon.url);
   const imageUrl = getPokemonImageUrl(id);
+  
+  const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite);
+  const isFavorite = useFavoritesStore((state) => state.isFavorite(id));
 
   return (
     <motion.div
@@ -26,11 +30,16 @@ export const PokemonCard = ({ pokemon }: Props) => {
         <button 
           onClick={(e) => {
             e.preventDefault();
-            console.log('Favoritado!'); 
+            e.stopPropagation();
+            toggleFavorite(pokemon);
           }}
-          className="absolute top-3 right-3 p-2 rounded-full bg-slate-950/50 text-slate-400 hover:text-red-500 hover:bg-slate-900 transition-all z-10 backdrop-blur-sm"
+          className={`absolute top-3 right-3 p-2 rounded-full transition-all z-10 backdrop-blur-sm ${
+            isFavorite 
+              ? 'bg-red-500/20 text-red-500 hover:bg-red-500/30' 
+              : 'bg-slate-950/50 text-slate-400 hover:text-red-400 hover:bg-slate-900'
+          }`}
         >
-          <Heart size={20} />
+          <Heart size={20} className={isFavorite ? "fill-current" : ""} />
         </button>
 
         <div className="p-6 flex flex-col items-center relative">
@@ -39,9 +48,7 @@ export const PokemonCard = ({ pokemon }: Props) => {
           </span>
           
           <div className="relative w-32 h-32 mb-8 z-20 transition-all duration-500 ease-out group-hover:scale-[1.35] group-hover:-translate-y-10">
-              
               <div className="absolute inset-0 bg-purple-500/30 blur-3xl rounded-full scale-0 group-hover:scale-110 transition-transform duration-500" />
-              
               <img
                 src={imageUrl}
                 alt={pokemon.name}
