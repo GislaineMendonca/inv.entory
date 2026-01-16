@@ -17,9 +17,10 @@ const Header = () => {
         
         <Link to="/" className="flex items-center gap-2 text-purple-500 hover:opacity-80 transition-opacity">
           <Box size={28} strokeWidth={2.5} />
-          <h1 className="text-2xl font-bold tracking-tight text-white font-mono">
-            inv<span className="text-purple-500">.</span>entory
-          </h1>
+            <h1 className="text-2xl font-bold tracking-tight text-white font-mono flex items-center">
+              inv<span className="text-purple-500">.</span>entory
+              <span className="text-purple-500 ml-2 text-lg opacity-80">pokémon</span>
+            </h1>
         </Link>
 
         <Link to="/favorites" className="relative group p-2">
