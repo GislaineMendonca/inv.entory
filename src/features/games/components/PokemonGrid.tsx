@@ -4,7 +4,8 @@ import { usePokemonDetails } from '../hooks/usePokemonDetails';
 import { PokemonCard } from './PokemonCard';
 import { CardSkeleton } from './CardSkeleton';
 import { SearchBar } from './SearchBar';
-import { ChevronLeft, ChevronRight, Ban } from 'lucide-react';
+import { Pagination } from './Pagination';
+import { Ban } from 'lucide-react';
 
 export const PokemonGrid = () => {
   const [page, setPage] = useState(1);
@@ -68,27 +69,13 @@ export const PokemonGrid = () => {
       )}
 
       {!isSearching && !isLoading && !isError && (
-        <div className="flex justify-center items-center gap-4 mt-12">
-          <button
-            onClick={() => handlePageChange(Math.max(1, page - 1))}
-            disabled={page === 1}
-            className="p-3 rounded-lg bg-slate-800 hover:bg-purple-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-white border border-slate-700"
-          >
-            <ChevronLeft size={24} />
-          </button>
-          
-          <span className="font-mono text-slate-400 bg-slate-900 px-4 py-2 rounded-lg border border-slate-800">
-            Página <span className="text-white font-bold">{page}</span>
-          </span>
-
-          <button
-            onClick={() => handlePageChange(page + 1)}
-            disabled={!listQuery.data?.next}
-            className="p-3 rounded-lg bg-slate-800 hover:bg-purple-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-white border border-slate-700"
-          >
-            <ChevronRight size={24} />
-          </button>
-        </div>
+        <Pagination 
+          currentPage={page}
+          totalCount={listQuery.data?.count || 0} 
+          pageSize={20}
+          onPageChange={handlePageChange}
+          isLoading={isLoading}
+        />
       )}
     </div>
   );
