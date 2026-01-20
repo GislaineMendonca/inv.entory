@@ -40,3 +40,40 @@ Diferente de catálogos tradicionais, o projeto adota uma identidade visual insp
 - [x] **Identidade VIsual:** Design System consistente, com paleta de cores escuras e tons de roxo, além de tipografia monoespaçada.
 - [x] **Responsividade:** Layout adaptável para diferentes resoluções, de dispositivos móveis a monitores ultrawide.
 - [x] **Animações:** Transições suaves de entrada, navegação e interação, utilizando CSS e Framer Motion.  
+
+## Tecnologias Utilizadas
+
+* **Core:** React com Vite e TypeScript
+* **Consumo de Dados:** TanStack Query (React Query) v5
+* **Gerenciamento de Estado:** Zustand com persistência
+* **Estilização:** Tailwind CSS e CSS Modules
+* **Roteamento:** React Router DOM
+* **Ícones:** Lucide React
+* **API:** PokeAPI (REST)
+
+## Aprendizados Técnicos
+
+O desenvolvimento deste projeto contribuiu para o aprofundamento de conceitos importantes em React e Front-end:
+
+1. **Server State vs Client State:** Compreensão da separação entre dados vindos da API, gerenciados pelo React Query, e o estado interno da aplicação, controlado pelo Zustand.
+2. **Otimização de Perfomance:** Uso de paginação no nível da API para reduzir o volume de dados carregado no cliente.
+3. **UI Engineering:** Construção de componentes mais avançados, como os cards com efeito 3D, utilizando propriedades como `transform`, `z-indez` e `overflow`.
+4. **TypeScript e Tipagem Forte:** Aplicação de generics e tipagem das respostas da API para aumentar a previsibilidade e segurança do código.
+5. **Arquitetura Orientada a Funcionalidade:** Organização do projeto por `features`, facilitando a manutenção, leitura e escalabilidade do código.
+
+## Como rodar localmente
+
+Clone o repositório e instale as dependências:
+
+```bash
+# Clone o respositório
+git clone [https://github.com/GislaineMendonca/inv.entory.git](https://github.com/GislaineMendonca/inv.entory.git)
+
+#Entre na pasta
+cd inventory
+
+# Instale as dependências
+npm install
+
+# Rode o servidor de desenvolvimento
+npm run dev
